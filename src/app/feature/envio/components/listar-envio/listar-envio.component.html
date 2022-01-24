@@ -1,0 +1,14 @@
+<p>listar-envio works!</p>
+
+<form [formGroup]="consultarUsuarioForm" (ngSubmit)="consultarUsuario()">
+    <div class="row">
+        <div class="col-sm-2">
+            <label>Número de documento:</label>
+        </div>
+        <div class="col-sm-4">
+            <input validar type="text" id="idDocumento" name="idDocumento" placeholder="Número de documento"
+                class="form-control" formControlName="idDocumento">
+        </div>
+    </div>
+    <input type="submit" value="Consultar" />
+</form>

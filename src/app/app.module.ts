@@ -7,6 +7,8 @@ import { HomeComponent } from '@home/home.component';
 import { ProductoModule } from '@producto/producto.module';
 import { CoreModule } from '@core/core.module';
 import { CookieService } from 'ngx-cookie-service';
+import { EnvioModule } from '@envio/envio.module';
+import { UsuarioModule } from '@usuario/usuario.module';
 
 
 
@@ -20,6 +22,8 @@ import { CookieService } from 'ngx-cookie-service';
     BrowserModule,
     AppRoutingModule,
     ProductoModule,
+    EnvioModule,
+    UsuarioModule,
     CoreModule
   ],
   providers: [CookieService],

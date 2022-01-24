@@ -1,6 +1,6 @@
 {
-  "/prospectos-vida": {
-    "target": "http://192.168.1.115:9002",
+  "/CeibaEntregas": {
+    "target": "http://192.168.0.26:8080",
     "logLevel": "debug"
   }
 
