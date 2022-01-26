@@ -1,0 +1,5 @@
+<div class="contenedor-error" [hidden]="!error.isError">
+    <p class="texto-error negrita">Error: {{error.titulo}}</p>
+    <p class="texto-error">Mensaje: {{error.mensaje}}</p>
+    <p class="texto-error" [hidden]="!error.descripcion">Detalle: {{error.descripcion}}</p>
+</div>

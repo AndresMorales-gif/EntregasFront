@@ -1,0 +1,6 @@
+<div class="contenedor-boton-accion">
+    <button [ngClass]="desactivado ? 'desactivar-boton' : 'activar-boton'" class="app-boton" (click)="onclick()"
+        [type]="tipoSubmit ? 'submit' : 'button'">
+        {{titulo}}
+    </button>
+</div>

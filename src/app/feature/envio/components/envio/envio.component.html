@@ -1,7 +1,9 @@
-<nav>
-    <a id="linkEnvio" routerLink="./" routerLinkActive="active"
-      [routerLinkActiveOptions]="{ exact: true }">Envios</a>
-      <a id="linkListarEnvio" routerLink="./listar" routerLinkActive="active">listar mis envios</a>
-    <a id="linkCrearEnvio" routerLink="./crear" routerLinkActive="active">Crear envio</a>
-  </nav>
-<router-outlet></router-outlet>
+<nav class="contenedor-navegacion-envio">
+  <app-boton-accion class="mh-boton" titulo="Listar mis envios" (accion)="redireccionar('envio/listar')">
+  </app-boton-accion>
+  <app-boton-accion class="mh-boton" titulo="Crear envio" (accion)="redireccionar('envio/crear')"></app-boton-accion>
+</nav>
+
+<div class="mt-router">
+  <router-outlet></router-outlet>
+</div>

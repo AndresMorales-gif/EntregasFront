@@ -4,3 +4,6 @@
     flex-flow: column;
   }
 
+.contenedor-app {
+    padding: 30px;
+}

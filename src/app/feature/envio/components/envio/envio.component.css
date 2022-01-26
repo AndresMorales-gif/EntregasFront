@@ -1,0 +1,13 @@
+.contenedor-navegacion-envio {
+    display: flex;
+    justify-content: center;
+}
+
+.mh-boton {
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.mt-router {
+    margin-top: 20px;
+}

@@ -8,8 +8,8 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent, canActivate: [SecurityGuard]  },
   { path: 'producto', loadChildren: () => import('@producto/producto.module').then(mod => mod.ProductoModule) },
-  { path: 'envio', loadChildren: () => import('@envio/envio.module').then(mod => mod.EnvioModule) }
-  
+  { path: 'envio', loadChildren: () => import('@envio/envio.module').then(mod => mod.EnvioModule) },
+  { path: 'usuario', loadChildren: () => import('@usuario/usuario.module').then(mod => mod.UsuarioModule) }
 ];
 
 @NgModule({

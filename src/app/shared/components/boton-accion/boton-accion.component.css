@@ -1,0 +1,35 @@
+.contenedor-boton-accion {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.app-boton {
+    padding: 5px;
+    width: 200px;
+    border-radius: 5px;
+    margin: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    box-shadow: 5px 3px 3px cadetblue;
+    border-color: transparent;
+    letter-spacing: 0.2px;
+}
+
+.activar-boton {
+    background-color: #106cc8;
+    color: #f5f5f5;
+    cursor: pointer;
+}
+
+.activar-boton:hover {
+    border-color: #106cc8;
+    background-color: transparent;
+    color: #106cc8;
+}
+
+.desactivar-boton {
+    background-color: #dddddd;
+    color: #555555;
+}

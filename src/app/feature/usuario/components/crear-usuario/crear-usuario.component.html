@@ -1,0 +1,19 @@
+<div [hidden]="usuarioCreado">
+    <div class="contenedor-usuario-creado">
+        <h2>Crear usuario!!</h2>
+    </div>
+    <form [formGroup]="crearUsuarioForm" (ngSubmit)="crearUsuario()">
+        <app-input-formulario texto="Nombre" placeholder="Nombre" propiedad="nombre" [grupo]="crearUsuarioForm">
+        </app-input-formulario>
+        <app-input-formulario texto="Número de documento" placeholder="Número de documento" propiedad="idDocumento"
+            [grupo]="crearUsuarioForm">
+        </app-input-formulario>
+        <app-boton-accion titulo="Crear" [tipoSubmit]="true" [desactivado]="!crearUsuarioForm.valid">
+        </app-boton-accion>
+    </form>
+    <app-error [error]="errorCrearUsuario"></app-error>
+</div>
+<div class="contenedor-usuario-creado" [hidden]="!usuarioCreado">
+    <p>Felicidades, has creado un usuario!!!! Ahora ya puedes crear envios o recibir envios.</p>
+    <app-boton-accion titulo="Crear otro usuario" (accion)="crearOtroUsuario()"></app-boton-accion>
+</div>

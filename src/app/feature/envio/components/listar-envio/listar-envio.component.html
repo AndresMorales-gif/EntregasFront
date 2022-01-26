@@ -1,14 +1,21 @@
-<p>listar-envio works!</p>
-
-<form [formGroup]="consultarUsuarioForm" (ngSubmit)="consultarUsuario()">
-    <div class="row">
-        <div class="col-sm-2">
-            <label>Número de documento:</label>
-        </div>
-        <div class="col-sm-4">
-            <input validar type="text" id="idDocumento" name="idDocumento" placeholder="Número de documento"
-                class="form-control" formControlName="idDocumento">
-        </div>
-    </div>
-    <input type="submit" value="Consultar" />
-</form>
+<div [hidden]="remitente">
+    <form [formGroup]="consultarUsuarioForm" (ngSubmit)="consultarUsuario()">
+        <app-input-formulario texto="Número de documento" placeholder="Número de documento" propiedad="idDocumento" [grupo]="consultarUsuarioForm">
+        </app-input-formulario>
+        <app-boton-accion titulo="Consultar" [tipoSubmit]="true" [desactivado]="!consultarUsuarioForm.valid">
+        </app-boton-accion>
+    </form>
+</div>
+<div class="contenedor-link" [hidden]="!errorConsultaremitente.isError">
+    <a style="text-align: center;" routerLink="/usuario/crear" routerLinkActive="active">Crear usuario</a>
+</div>
+<app-error [error]="errorConsultaremitente"></app-error>
+<app-usuario-informacion [usuario]="remitente" [bienvenida]="true"></app-usuario-informacion>
+<div [hidden]="!remitente">
+    <app-boton-accion titulo="Envios pendientes" (accion)="consultarEnvios('1')">
+    </app-boton-accion>
+    <app-boton-accion titulo="Evios en proceso" (accion)="consultarEnvios('2')">
+    </app-boton-accion>
+    <app-boton-accion titulo="Historico de envios" (accion)="consultarEnvios('3')">
+    </app-boton-accion>
+</div>

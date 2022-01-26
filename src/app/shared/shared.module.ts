@@ -7,6 +7,10 @@ import { MensajeErrorCamposContenedorDirective } from './directivas/error-campos
 import { ErrorCamposPlantillaComponent } from './directivas/error-campos/componente/error-campos-plantilla.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TrackByPipe } from './pipe/track-by.pipe';
+import { BotonAccionComponent } from './components/boton-accion/boton-accion.component';
+import { ErrorComponent } from './components/error/error.component';
+import { UsuarioInformacionComponent } from './components/usuario-informacion/usuario-informacion.component';
+import { InputFormularioComponent } from './components/input-formulario/input-formulario.component';
 
 @NgModule({
   declarations: [
@@ -14,9 +18,13 @@ import { TrackByPipe } from './pipe/track-by.pipe';
     MensajeErrorCamposDirective,
     MensajeErrorCamposContenedorDirective,
     MensajeErrorCamposSubmitDirective,
-    TrackByPipe
+    TrackByPipe,
+    BotonAccionComponent,
+    ErrorComponent,
+    UsuarioInformacionComponent,
+    InputFormularioComponent
   ],
-  imports: [ReactiveFormsModule, FormsModule],
+  imports: [ReactiveFormsModule, FormsModule, CommonModule],
   exports: [
     CommonModule,
     HttpClientModule,
@@ -25,7 +33,11 @@ import { TrackByPipe } from './pipe/track-by.pipe';
     MensajeErrorCamposSubmitDirective,
     ReactiveFormsModule,
     FormsModule,
-    TrackByPipe
+    TrackByPipe,
+    BotonAccionComponent,
+    ErrorComponent,
+    UsuarioInformacionComponent,
+    InputFormularioComponent
   ]
 })
 export class SharedModule { }

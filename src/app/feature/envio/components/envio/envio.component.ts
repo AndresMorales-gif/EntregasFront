@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 
 @Component({
     selector: 'app-envio',
@@ -8,9 +9,14 @@ import { Component, OnInit } from "@angular/core";
 
 export class EnvioComponent implements OnInit {
     
-    constructor() { }
+    constructor(private navegacion: Router) { }
 
     ngOnInit(): void {
         
+    }
+
+    redireccionar(ruta: string) {
+        console.log("aca")
+        this.navegacion.navigateByUrl(ruta);
     }
 }

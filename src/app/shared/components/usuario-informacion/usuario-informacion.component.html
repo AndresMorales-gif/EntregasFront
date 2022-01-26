@@ -1,0 +1,9 @@
+<div [hidden]="!usuario" class="contenedor-usuario-informacion">
+    <div [hidden]="!bienvenida">
+        <p>Hola <span class="texto-negrita">{{usuario?.nombre}}</span> bienvenido!!!!</p>
+    </div>
+    <div>
+        <p><span class="texto-negrita">Número de documento:</span> {{usuario?.idDocumento}}</p>
+        <p><span class="texto-negrita">Nombre:</span> {{usuario?.nombre}}</p>
+    </div>
+</div>
