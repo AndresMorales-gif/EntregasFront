@@ -1,6 +1,6 @@
 <form [formGroup]="consultarUsuarioForm" (ngSubmit)="consultarUsuario()">
     <app-input-formulario [texto]="texto" [placeholder]="texto" propiedad="idDocumento"
-        [grupo]="consultarUsuarioForm">
+        [grupo]="consultarUsuarioForm" [soloLectura]="noEditable">
     </app-input-formulario>
     <app-boton-accion titulo="Consultar" [tipoSubmit]="true" [desactivado]="!consultarUsuarioForm.valid">
     </app-boton-accion>

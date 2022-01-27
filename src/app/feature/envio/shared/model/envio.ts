@@ -9,7 +9,8 @@ export class Envio {
     precio: number;
     fechaCreacion: Date;
 
-    constructor(id: number,
+    constructor(
+        id: number,
         remitente: string,
         destinatario: string,
         zona: number,
@@ -17,7 +18,8 @@ export class Envio {
         pesoCarga: number,
         fechaEntrega: Date,
         precio: number,
-        fechaCreacion: Date) {
+        fechaCreacion: Date
+    ) {
 
         this.id = id;
         this.remitente = remitente;

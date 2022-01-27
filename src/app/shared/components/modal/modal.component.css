@@ -1,0 +1,36 @@
+.contenedor-modal {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.contenedor-modal-interno {
+    z-index: 1000;
+    top: 30px;
+    bottom: 0;
+    left: 300px;
+}
+
+.modal-cuerpo {
+    background: rgb(238, 240, 241);
+    margin: 40px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 3px 3px cadetblue;
+}
+
+.modal-fondo {
+    z-index: 900;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #acbacb;
+    opacity: 0.6;
+}

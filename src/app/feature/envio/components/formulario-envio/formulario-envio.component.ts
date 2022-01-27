@@ -5,12 +5,12 @@ import { Zona } from '@envio/shared/model/zona';
 import { Envio } from '@envio/shared/model/envio';
 import { EnvioService } from '@envio/shared/service/envio.service';
 import { Observable } from 'rxjs';
-import { Usuario } from '@usuario/shared/model/usuario';
+import { Usuario } from '@core/modelo/usuario';
 import { Respuesta } from '@core/modelo/respuesta';
 
-const ERROR_ACCION = "Error al ejecutar la accion";
-const ERROR_AL_CREAR = "Error al crear el envio";
-const ERROR_AL_ACTUALIZAR = "Error al actualizar el envio";
+const ERROR_ACCION = 'Error al ejecutar la accion';
+const ERROR_AL_CREAR = 'Error al crear el envio';
+const ERROR_AL_ACTUALIZAR = 'Error al actualizar el envio';
 
 @Component({
   selector: 'app-formulario-envio',
@@ -25,10 +25,12 @@ export class FormularioEnvioComponent implements OnInit {
   destinatario: Usuario;
   zonas: Zona[] = [];
   envio: Envio;
+  idRemitente: string;
+  idDestinatario: string;
   @Input()
   idEnvio: number;
   @Input()
-  actualizar: boolean = false;
+  actualizar = false;
   @Output()
   completo: EventEmitter<number> = new EventEmitter();
 
@@ -37,12 +39,28 @@ export class FormularioEnvioComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.construirFormularioEnvio();
     this.consultarZonas();
+
+  }
+
+  consultarEnvio(): void {
+    this.envioService.consultarEnvioPorId(this.idEnvio).toPromise().then((envio) => {
+      this.envio = envio;
+      this.idRemitente = envio.remitente;
+      this.idDestinatario = envio.destinatario;
+      this.construirFormularioEnvio();
+    });
   }
 
   consultarZonas(): void {
-    this.envioService.consultarZonas().toPromise().then(zonas => this.zonas = zonas);
+    this.envioService.consultarZonas().toPromise().then(zonas => {
+      this.zonas = zonas;
+      if (this.actualizar) {
+        this.consultarEnvio();
+      } else {
+        this.construirFormularioEnvio();
+      }
+    });
   }
 
   consultarRemitenteTerminado(usuario: Usuario) {
@@ -59,14 +77,22 @@ export class FormularioEnvioComponent implements OnInit {
       pesoCarga: new FormControl(this.envio?.pesoCarga, [Validators.required])
     });
     this.envioPlus = new FormControl(this.envio ? this.envio.envioPlus : false);
-    this.formularioEnvioForm.setControl("envioPlus", this.envioPlus);
+    this.formularioEnvioForm.setControl('envioPlus', this.envioPlus);
   }
 
   accionFormularioEnvio(): void {
     if (this.actualizar) {
-      this.respuestaAccion(this.envioService.actualizarEnvio({ ...this.formularioEnvioForm.value, remitente: this.remitente.idDocumento, destinatario: this.destinatario.idDocumento }), ERROR_AL_ACTUALIZAR);
+      this.respuestaAccion(this.envioService.actualizarEnvio
+        ({
+          ...this.formularioEnvioForm.value, remitente: this.remitente.idDocumento,
+          destinatario: this.destinatario.idDocumento, id: this.idEnvio
+        }), ERROR_AL_ACTUALIZAR);
     } else {
-      this.respuestaAccion(this.envioService.crearEnvio({ ...this.formularioEnvioForm.value, remitente: this.remitente.idDocumento, destinatario: this.destinatario.idDocumento }), ERROR_AL_CREAR);
+      this.respuestaAccion(this.envioService.crearEnvio
+        ({
+          ...this.formularioEnvioForm.value, remitente: this.remitente.idDocumento,
+          destinatario: this.destinatario.idDocumento
+        }), ERROR_AL_CREAR);
     }
   }
 

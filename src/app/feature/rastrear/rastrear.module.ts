@@ -1,12 +1,20 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { RastrearComponent } from './components/rastrear/rastrear.component';
+import { RastrearRoutingModule } from './rastrear-routing.module';
+import { EnvioService } from '@envio/shared/service/envio.service';
+import { SharedModule } from '@shared/shared.module';
+import { UsuarioService } from '@core/services/usuario.service';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    RastrearComponent
+  ],
   imports: [
-    CommonModule
-  ]
+    SharedModule,
+    RastrearRoutingModule
+  ],
+  providers: [EnvioService, UsuarioService]
 })
 export class RastrearModule { }

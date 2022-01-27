@@ -1,4 +1,4 @@
-<div [hidden]="usuarioCreado">
+<div [hidden]="usuarioCreado" *ngIf="formularioUsuarioForm">
     <div class="contenedor-usuario-creado">
         <h2>{{actualizar ? 'Actualizar' :'Crear'}} usuario!!</h2>
     </div>
@@ -8,7 +8,8 @@
         <app-input-formulario texto="Número de documento" placeholder="Número de documento" propiedad="idDocumento"
             [grupo]="formularioUsuarioForm" [soloLectura]="actualizar">
         </app-input-formulario>
-        <app-boton-accion [titulo]="actualizar ? 'Actualizar' : 'Crear'" [tipoSubmit]="true" [desactivado]="!formularioUsuarioForm.valid">
+        <app-boton-accion [titulo]="actualizar ? 'Actualizar' : 'Crear'" [tipoSubmit]="true"
+            [desactivado]="!formularioUsuarioForm.valid">
         </app-boton-accion>
     </form>
     <app-error [error]="errorUsuarioFormulario"></app-error>
@@ -16,4 +17,8 @@
 <div class="contenedor-usuario-creado" [hidden]="!usuarioCreado">
     <p>Felicidades, has {{actualizar ? 'actualizado' : 'creado'}} un usuario!!!! {{ actualizar ? '' :
         'Ahora ya puedes crear envios o recibir envios.'}}</p>
+    <div [hidden]="actualizar">
+        <app-boton-accion titulo="Crear otro usuario" (accion)="resetear()">
+        </app-boton-accion>
+    </div>
 </div>

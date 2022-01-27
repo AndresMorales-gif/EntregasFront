@@ -3,7 +3,7 @@ export class Error {
     titulo: string;
     mensaje: string;
     descripcion: string;
-    
+
     constructor() {
         this.isError = false;
     }

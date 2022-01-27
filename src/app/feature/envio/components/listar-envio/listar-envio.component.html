@@ -18,6 +18,16 @@
 </div>
 <div [hidden]="!consultaEnvios || envios.length === 0" class="contenedor-lista-envios">
     <div *ngFor="let envio of envios" class="contenedor-card-envio">
+        <div [hidden]="!esEditable">
+            <div class="contenedor-acciones">
+                <div class="contenedor-acciones-imagenes" (click)="accionEliminarModal(envio.id)">
+                    <img src="./assets/svg/eliminar.png" alt="eliminar">
+                </div>
+                <div class="contenedor-acciones-imagenes" (click)="accionModificar(envio.id)">
+                    <img src="./assets/svg/editar.png" alt="editar">
+                </div>
+            </div>
+        </div>
         <p><span class="texto-negrita">Id:</span> {{envio.id}}</p>
         <p><span class="texto-negrita">Remitente:</span> {{envio.remitente}}</p>
         <p><span class="texto-negrita">Destinatario:</span> {{envio.destinatario}}</p>
@@ -33,3 +43,15 @@
     <app-boton-accion titulo="Volver a consultar" (accion)="resetear()">
     </app-boton-accion>
 </div>
+
+<app-modal [mostrar]="modalEliminar">    
+    <div class="texto-informativo-modal">
+        ¿Estas seguro que quieres eliminar el envio?
+    </div>
+    <div class="contenedor-acciones-modal">
+        <app-boton-accion titulo="Si" (accion)="accionEliminar()">
+        </app-boton-accion>
+        <app-boton-accion titulo="No" [lleno]="false" (accion)="cerrarAbrirModal()">
+        </app-boton-accion>
+    </div>
+</app-modal>

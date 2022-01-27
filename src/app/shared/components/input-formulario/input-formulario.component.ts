@@ -14,12 +14,12 @@ export class InputFormularioComponent implements OnInit {
   placeholder: string;
   @Input()
   propiedad: string;
-  @Input() 
+  @Input()
   grupo: FormGroup;
   @Input()
-  soloLectura: boolean = false;
+  soloLectura = false;
   @Input()
-  tipo: string = 'text';
+  tipo = 'text';
 
   constructor() { }
 

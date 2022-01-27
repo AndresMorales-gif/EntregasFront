@@ -23,6 +23,9 @@
       "@usuario/*": [
         "src/app/feature/usuario/*"
       ],
+      "@rastrear/*": [
+        "src/app/feature/rastrear/*"
+      ],
       "@shared/*": [
         "src/app/shared/*"
       ]

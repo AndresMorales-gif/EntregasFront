@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Usuario } from '@usuario/shared/model/usuario';
+import { Usuario } from '@core/modelo/usuario';
 
 @Component({
   selector: 'app-usuario-informacion',
@@ -11,7 +11,7 @@ export class UsuarioInformacionComponent implements OnInit {
   @Input()
   usuario: Usuario;
   @Input()
-  bienvenida: boolean = false;
+  bienvenida = false;
 
   constructor() { }
 

@@ -12,6 +12,7 @@ import { ErrorComponent } from './components/error/error.component';
 import { UsuarioInformacionComponent } from './components/usuario-informacion/usuario-informacion.component';
 import { InputFormularioComponent } from './components/input-formulario/input-formulario.component';
 import { RouterModule } from '@angular/router';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { RouterModule } from '@angular/router';
     BotonAccionComponent,
     ErrorComponent,
     UsuarioInformacionComponent,
-    InputFormularioComponent
+    InputFormularioComponent,
+    ModalComponent
   ],
   imports: [ReactiveFormsModule, FormsModule, CommonModule, RouterModule],
   exports: [
@@ -38,7 +40,8 @@ import { RouterModule } from '@angular/router';
     BotonAccionComponent,
     ErrorComponent,
     UsuarioInformacionComponent,
-    InputFormularioComponent
+    InputFormularioComponent,
+    ModalComponent
   ]
 })
 export class SharedModule { }

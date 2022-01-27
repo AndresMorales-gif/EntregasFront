@@ -1,0 +1,17 @@
+<div [hidden]="consultaCompleta">
+    <form [formGroup]="rastrearEnvioForm" (ngSubmit)="consultarEnvio()">
+        <app-input-formulario texto="Número de guia" placeholder="Número de guia" propiedad="idEnvio"
+            [grupo]="rastrearEnvioForm">
+        </app-input-formulario>
+        <app-boton-accion titulo="Consultar" [tipoSubmit]="true" [desactivado]="!rastrearEnvioForm.valid">
+        </app-boton-accion>
+    </form>
+    <app-error [error]="errorConsultaEnvio"></app-error>
+</div>
+<div [hidden]="!consultaCompleta" class="contenedor-rastrear">
+    <p>El envio con guia {{envio?.id}} esta programado para la fecha {{envio?.fechaEntrega}}.</p>
+    <p>Remitente: {{remitente?.nombre}}</p>
+    <p>Destinatario: {{destinatario?.nombre}}</p>
+    <app-boton-accion titulo="Rastrear otro envio" (accion)="resetear()">
+    </app-boton-accion>
+</div>

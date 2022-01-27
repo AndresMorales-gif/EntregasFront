@@ -17,16 +17,28 @@
     letter-spacing: 0.2px;
 }
 
-.activar-boton {
+.activar-boton-lleno {
     background-color: #106cc8;
     color: #f5f5f5;
     cursor: pointer;
 }
 
-.activar-boton:hover {
+.activar-boton-lleno:hover {
     border-color: #106cc8;
     background-color: transparent;
     color: #106cc8;
+}
+
+.activar-boton-vacio {
+    border-color: #106cc8;
+    background-color: transparent;
+    color: #106cc8;
+    cursor: pointer;
+}
+
+.activar-boton-vacio:hover {
+    background-color: #106cc8;
+    color: #f5f5f5;
 }
 
 .desactivar-boton {

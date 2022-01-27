@@ -10,9 +10,11 @@ export class BotonAccionComponent implements OnInit {
   @Input()
   titulo: string;
   @Input()
-  desactivado: boolean = false;
+  desactivado = false;
   @Input()
-  tipoSubmit: boolean = false;
+  lleno = true;
+  @Input()
+  tipoSubmit = false;
   @Output()
   accion: EventEmitter<void> = new EventEmitter();
 
@@ -22,9 +24,7 @@ export class BotonAccionComponent implements OnInit {
   }
 
   onclick() {
-    console.log("seguimos aca")
     if (!this.desactivado && !this.tipoSubmit) {
-      console.log("entre")
       this.accion.emit();
     }
   }

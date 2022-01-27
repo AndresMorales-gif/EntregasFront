@@ -29,3 +29,26 @@
 .texto-negrita {
     font-weight: 800;
 }
+
+.texto-informativo-modal {
+    color: #271568;
+    font-size: 17px;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+.contenedor-acciones-modal {
+    display: flex;
+}
+
+.contenedor-acciones {
+    display: flex;
+    justify-content: end;
+}
+
+.contenedor-acciones-imagenes img {
+    height: 20px;
+    cursor: pointer;
+}
