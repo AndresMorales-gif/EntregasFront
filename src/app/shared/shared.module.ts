@@ -11,6 +11,7 @@ import { BotonAccionComponent } from './components/boton-accion/boton-accion.com
 import { ErrorComponent } from './components/error/error.component';
 import { UsuarioInformacionComponent } from './components/usuario-informacion/usuario-informacion.component';
 import { InputFormularioComponent } from './components/input-formulario/input-formulario.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { InputFormularioComponent } from './components/input-formulario/input-fo
     UsuarioInformacionComponent,
     InputFormularioComponent
   ],
-  imports: [ReactiveFormsModule, FormsModule, CommonModule],
+  imports: [ReactiveFormsModule, FormsModule, CommonModule, RouterModule],
   exports: [
     CommonModule,
     HttpClientModule,

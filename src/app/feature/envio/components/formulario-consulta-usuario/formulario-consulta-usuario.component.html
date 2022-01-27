@@ -1,0 +1,11 @@
+<form [formGroup]="consultarUsuarioForm" (ngSubmit)="consultarUsuario()">
+    <app-input-formulario [texto]="texto" [placeholder]="texto" propiedad="idDocumento"
+        [grupo]="consultarUsuarioForm">
+    </app-input-formulario>
+    <app-boton-accion titulo="Consultar" [tipoSubmit]="true" [desactivado]="!consultarUsuarioForm.valid">
+    </app-boton-accion>
+</form>
+<div class="contenedor-link" [hidden]="!errorConsultaremitente.isError">
+    <a routerLink="/usuario/crear" routerLinkActive="active">Crear usuario</a>
+</div>
+<app-error [error]="errorConsultaremitente"></app-error>

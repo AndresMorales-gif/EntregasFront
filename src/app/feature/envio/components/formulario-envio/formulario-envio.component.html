@@ -1,0 +1,53 @@
+<div class="contenedor-envio-creado">
+    <h2>{{actualizar ? 'Actualizar' : 'Crear'}} envio!!</h2>
+</div>
+<div class="contenedor-input-formulario">
+    <div class="contenedor-label-input-formulario">
+        <label>Remitente:</label>
+    </div>
+</div>
+<div [hidden]="remitente">
+    <app-formulario-consulta-usuario textoUsuario="remitente" texto="Número de documento del remitente" (consultaTerminada)="consultarRemitenteTerminado($event)"></app-formulario-consulta-usuario>
+</div>
+<app-usuario-informacion [usuario]="remitente"></app-usuario-informacion>
+<div class="contenedor-input-formulario" [hidden]="!remitente">
+    <div class="contenedor-label-input-formulario">
+        <label>Destinatario:</label>
+    </div>
+</div>
+<div [hidden]="!remitente || destinatario">
+    <app-formulario-consulta-usuario textoUsuario="destinatario" texto="Número de documento del destinatario" (consultaTerminada)="consultarDestinatarioTerminado($event)"></app-formulario-consulta-usuario>
+</div>
+<app-usuario-informacion [usuario]="destinatario"></app-usuario-informacion>
+
+<div [hidden]="!destinatario || !remitente">
+    <form [formGroup]="formularioEnvioForm" (ngSubmit)="accionFormularioEnvio()">
+        <div class="contenedor-input-formulario" [formGroup]="formularioEnvioForm">
+            <div class="contenedor-label-input-formulario">
+                <label>Zona:</label>
+            </div>
+            <div class="contenedor-input-input-formulario">
+                <select name="zona" id="zona" class="input-input-formulario"
+                formControlName="zona">
+                    <option *ngFor="let zona of zonas" [value]="zona.id">{{zona.nombre}} - {{zona.diasEntrega}} dias</option>
+                </select>
+            </div>
+        </div>
+        <app-input-formulario texto="Peso de la carga" placeholder="Peso de la carga" propiedad="pesoCarga"
+            [grupo]="formularioEnvioForm" tipo="number">
+        </app-input-formulario>
+        <div class="contenedor-input-formulario" [formGroup]="formularioEnvioForm">
+            <div class="contenedor-label-input-formulario">
+                <label>Envio plus (Llega en la mitad del tiempo, con un precio del 30% mayor):</label>
+            </div>
+            <div class="contenedor-input-input-formulario">
+                <input validar type="checkbox" id="envioPlus" name="envioPlus" class="input-input-formulario"
+                    formControlName="envioPlus" [readonly]="false" />
+            </div>
+        </div>
+        <app-boton-accion [titulo]="actualizar ? 'Actualizar' : 'Crear'" [tipoSubmit]="true"
+            [desactivado]="!formularioEnvioForm.valid">
+        </app-boton-accion>
+    </form>
+    <app-error [error]="errorFormularioEnvio"></app-error>
+</div>

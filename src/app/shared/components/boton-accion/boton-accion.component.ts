@@ -24,6 +24,7 @@ export class BotonAccionComponent implements OnInit {
   onclick() {
     console.log("seguimos aca")
     if (!this.desactivado && !this.tipoSubmit) {
+      console.log("entre")
       this.accion.emit();
     }
   }

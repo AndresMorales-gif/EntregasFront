@@ -1,21 +1,35 @@
 <div [hidden]="remitente">
-    <form [formGroup]="consultarUsuarioForm" (ngSubmit)="consultarUsuario()">
-        <app-input-formulario texto="Número de documento" placeholder="Número de documento" propiedad="idDocumento" [grupo]="consultarUsuarioForm">
-        </app-input-formulario>
-        <app-boton-accion titulo="Consultar" [tipoSubmit]="true" [desactivado]="!consultarUsuarioForm.valid">
-        </app-boton-accion>
-    </form>
+    <app-formulario-consulta-usuario textoUsuario="remitente" texto="Número de documento"
+        (consultaTerminada)="consultarUsuarioTerminado($event)"></app-formulario-consulta-usuario>
 </div>
-<div class="contenedor-link" [hidden]="!errorConsultaremitente.isError">
-    <a style="text-align: center;" routerLink="/usuario/crear" routerLinkActive="active">Crear usuario</a>
-</div>
-<app-error [error]="errorConsultaremitente"></app-error>
 <app-usuario-informacion [usuario]="remitente" [bienvenida]="true"></app-usuario-informacion>
-<div [hidden]="!remitente">
+<div [hidden]="!remitente || consultaEnvios">
     <app-boton-accion titulo="Envios pendientes" (accion)="consultarEnvios('1')">
     </app-boton-accion>
     <app-boton-accion titulo="Evios en proceso" (accion)="consultarEnvios('2')">
     </app-boton-accion>
     <app-boton-accion titulo="Historico de envios" (accion)="consultarEnvios('3')">
+    </app-boton-accion>
+</div>
+<div [hidden]="!consultaEnvios" class="contenedor-lista-envios-vacia">
+    <div [hidden]="envios.length > 0">
+        No tienes envios que mostrar!!
+    </div>
+</div>
+<div [hidden]="!consultaEnvios || envios.length === 0" class="contenedor-lista-envios">
+    <div *ngFor="let envio of envios" class="contenedor-card-envio">
+        <p><span class="texto-negrita">Id:</span> {{envio.id}}</p>
+        <p><span class="texto-negrita">Remitente:</span> {{envio.remitente}}</p>
+        <p><span class="texto-negrita">Destinatario:</span> {{envio.destinatario}}</p>
+        <p><span class="texto-negrita">Envio plus:</span> {{envio.envioPlus ? 'Si' : 'No'}}</p>
+        <p><span class="texto-negrita">Peso de la carga:</span> {{envio.pesoCarga}}</p>
+        <p><span class="texto-negrita">Fecha de entrega:</span> {{envio.fechaEntrega | date: 'short'}}</p>
+        <p><span class="texto-negrita">Precio:</span> {{envio.precio | currency}}</p>
+        <p><span class="texto-negrita">Fecha de creacion:</span> {{envio.fechaCreacion | date: 'short'}}</p>
+    </div>
+</div>
+
+<div [hidden]="!consultaEnvios">
+    <app-boton-accion titulo="Volver a consultar" (accion)="resetear()">
     </app-boton-accion>
 </div>

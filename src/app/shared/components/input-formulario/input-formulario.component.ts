@@ -16,6 +16,10 @@ export class InputFormularioComponent implements OnInit {
   propiedad: string;
   @Input() 
   grupo: FormGroup;
+  @Input()
+  soloLectura: boolean = false;
+  @Input()
+  tipo: string = 'text';
 
   constructor() { }
 

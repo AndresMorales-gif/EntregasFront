@@ -4,12 +4,16 @@ import { CrearUsuarioComponent } from './components/crear-usuario/crear-usuario.
 import { UsuarioRoutingModule } from './usuario-routing.module';
 import { UsuarioService } from './shared/service/usuario.service';
 import { SharedModule } from '@shared/shared.module';
+import { EditarUsuarioComponent } from './components/editar-usuario/editar-usuario.component';
+import { FormularioUsuarioComponent } from './components/formulario-usuario/formulario-usuario.component';
 
 
 
 @NgModule({
   declarations: [
-    CrearUsuarioComponent
+    CrearUsuarioComponent,
+    EditarUsuarioComponent,
+    FormularioUsuarioComponent
   ],
   imports: [
     UsuarioRoutingModule,

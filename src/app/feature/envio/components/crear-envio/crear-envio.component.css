@@ -1,0 +1,11 @@
+.contenedor-envio-creado {
+    width: 400px;
+    margin: auto;
+    color: #271568;
+    font-size: 17px;
+}
+
+.texto-negrita {
+    font-weight: 800;
+    text-align: center;
+}

@@ -1,0 +1,19 @@
+<div [hidden]="usuarioCreado">
+    <div class="contenedor-usuario-creado">
+        <h2>{{actualizar ? 'Actualizar' :'Crear'}} usuario!!</h2>
+    </div>
+    <form [formGroup]="formularioUsuarioForm" (ngSubmit)="accionFormularioEnvio()">
+        <app-input-formulario texto="Nombre" placeholder="Nombre" propiedad="nombre" [grupo]="formularioUsuarioForm">
+        </app-input-formulario>
+        <app-input-formulario texto="Número de documento" placeholder="Número de documento" propiedad="idDocumento"
+            [grupo]="formularioUsuarioForm" [soloLectura]="actualizar">
+        </app-input-formulario>
+        <app-boton-accion [titulo]="actualizar ? 'Actualizar' : 'Crear'" [tipoSubmit]="true" [desactivado]="!formularioUsuarioForm.valid">
+        </app-boton-accion>
+    </form>
+    <app-error [error]="errorUsuarioFormulario"></app-error>
+</div>
+<div class="contenedor-usuario-creado" [hidden]="!usuarioCreado">
+    <p>Felicidades, has {{actualizar ? 'actualizado' : 'creado'}} un usuario!!!! {{ actualizar ? '' :
+        'Ahora ya puedes crear envios o recibir envios.'}}</p>
+</div>

@@ -1,5 +1,31 @@
-.contenedor-link {
+.contenedor-lista-envios-vacia {
     width: 350px;
     margin: auto;
-    margin-top: 20px;
+    color: #271568;
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.contenedor-lista-envios {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    color: #271568;
+    font-size: 17px;
+}
+
+.contenedor-card-envio {
+    width: 200px;
+    margin: 20px;
+    box-shadow: 2px 2px 3px 3px cadetblue;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.contenedor-card-envio p {
+    margin: 0px;
+}
+
+.texto-negrita {
+    font-weight: 800;
 }

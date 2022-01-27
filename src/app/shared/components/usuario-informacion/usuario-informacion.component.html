@@ -6,4 +6,5 @@
         <p><span class="texto-negrita">Número de documento:</span> {{usuario?.idDocumento}}</p>
         <p><span class="texto-negrita">Nombre:</span> {{usuario?.nombre}}</p>
     </div>
+    <a [routerLink]="'/usuario/editar/' + usuario?.idDocumento" routerLinkActive="active">Editar usuario</a>
 </div>

@@ -1,0 +1,37 @@
+.contenedor-input-formulario {
+    margin: auto;
+    width: 350px;
+    padding: 10px;
+}
+
+.contenedor-label-input-formulario {
+    font-size: 17px;
+    color: #271568;
+    margin-bottom: 10px;
+    font-weight: 800;
+}
+
+.contenedor-input-input-formulario {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-input-formulario {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #271568;
+    color: #271568;
+    margin-bottom: 10px;
+    border-left: none;
+    border-top: none;
+    box-shadow: 1px 1px 2px 1px cadetblue;
+}
+
+.contenedor-envio-creado {    
+    width: 350px;
+    margin: auto;
+    margin-top: 20px;
+    font-size: 17px;
+    color: #271568;
+    text-align: center;
+}

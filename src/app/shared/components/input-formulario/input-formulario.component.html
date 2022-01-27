@@ -3,7 +3,7 @@
         <label>{{texto}}:</label>
     </div>
     <div class="contenedor-input-input-formulario">
-        <input validar type="text" [id]="propiedad" [name]="propiedad" [placeholder]="placeholder"
-            class="input-input-formulario" [formControlName]="propiedad">
+        <input validar [type]="tipo" [id]="propiedad" [name]="propiedad" [placeholder]="placeholder"
+            class="input-input-formulario" [formControlName]="propiedad" [readonly]="soloLectura" />
     </div>
 </div>
