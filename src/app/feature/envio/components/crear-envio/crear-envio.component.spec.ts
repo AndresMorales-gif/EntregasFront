@@ -1,4 +1,7 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { HttpService } from '@core/services/http.service';
+import { EnvioRoutingModule } from '@envio/envio-routing.module';
 import { Envio } from '@envio/shared/model/envio';
 import { EnvioService } from '@envio/shared/service/envio.service';
 import { of } from 'rxjs';
@@ -13,7 +16,8 @@ describe('CrearEnvioComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [CrearEnvioComponent],
-      providers: [EnvioService]
+      imports: [HttpClientModule, EnvioRoutingModule],
+      providers: [EnvioService, HttpService]
     })
       .compileComponents();
   });
@@ -31,4 +35,12 @@ describe('CrearEnvioComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('formulario es invalido cuando esta vacio', waitForAsync(() => {
+    expect(component.esCompleto).toBeFalse();
+    component.creacionCompleta(1).then(() => {
+      expect(component.esCompleto).toBeTrue();
+    });
+  }));
+
 });

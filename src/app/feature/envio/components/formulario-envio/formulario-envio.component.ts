@@ -43,8 +43,8 @@ export class FormularioEnvioComponent implements OnInit {
 
   }
 
-  consultarEnvio(): void {
-    this.envioService.consultarEnvioPorId(this.idEnvio).toPromise().then((envio) => {
+  consultarEnvio(): Promise<void> {
+    return this.envioService.consultarEnvioPorId(this.idEnvio).toPromise().then((envio) => {
       this.envio = envio;
       this.idRemitente = envio.remitente;
       this.idDestinatario = envio.destinatario;
@@ -52,8 +52,8 @@ export class FormularioEnvioComponent implements OnInit {
     });
   }
 
-  consultarZonas(): void {
-    this.envioService.consultarZonas().toPromise().then(zonas => {
+  consultarZonas(): Promise<void> {
+    return this.envioService.consultarZonas().toPromise().then(zonas => {
       this.zonas = zonas;
       if (this.actualizar) {
         this.consultarEnvio();
@@ -80,24 +80,24 @@ export class FormularioEnvioComponent implements OnInit {
     this.formularioEnvioForm.setControl('envioPlus', this.envioPlus);
   }
 
-  accionFormularioEnvio(): void {
+  accionFormularioEnvio(): Promise<void> {
     if (this.actualizar) {
-      this.respuestaAccion(this.envioService.actualizarEnvio
+      return this.respuestaAccion(this.envioService.actualizarEnvio
         ({
           ...this.formularioEnvioForm.value, remitente: this.remitente.idDocumento,
           destinatario: this.destinatario.idDocumento, id: this.idEnvio
         }), ERROR_AL_ACTUALIZAR);
-    } else {
-      this.respuestaAccion(this.envioService.crearEnvio
-        ({
-          ...this.formularioEnvioForm.value, remitente: this.remitente.idDocumento,
-          destinatario: this.destinatario.idDocumento
-        }), ERROR_AL_CREAR);
     }
+    return this.respuestaAccion(this.envioService.crearEnvio
+      ({
+        ...this.formularioEnvioForm.value, remitente: this.remitente.idDocumento,
+        destinatario: this.destinatario.idDocumento
+      }), ERROR_AL_CREAR);
+
   }
 
-  respuestaAccion(accion: Observable<Respuesta | void>, mensaje: string): void {
-    accion.toPromise().then(respuesta => {
+  respuestaAccion(accion: Observable<Respuesta | void>, mensaje: string): Promise<void> {
+    return accion.toPromise().then(respuesta => {
       this.errorFormularioEnvio.isError = false;
       this.formularioEnvioForm.reset();
       this.remitente = null;

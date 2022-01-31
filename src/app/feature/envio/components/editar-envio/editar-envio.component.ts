@@ -21,8 +21,8 @@ export class EditarEnvioComponent implements OnInit {
     });
   }
 
-  creacionCompleta(id: number): void {
-    this.envioService.consultarEnvioPorId(id).toPromise().then(envio => {
+  creacionCompleta(id: number): Promise<void> {
+    return this.envioService.consultarEnvioPorId(id).toPromise().then(envio => {
       this.envio = envio;
       this.cambiarEsCompleto();
     });

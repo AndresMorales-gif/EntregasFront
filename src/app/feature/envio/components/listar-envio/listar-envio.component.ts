@@ -30,12 +30,12 @@ export class ListarEnvioComponent implements OnInit {
     this.remitente = usuario;
   }
 
-  consultarEnvios(tipoConsulta: string) {
+  consultarEnvios(tipoConsulta: string): Promise<void> {
     this.esEditable = false;
     if (tipoConsulta === PENDIENTES) {
       this.esEditable = true;
     }
-    this.envioService.consultarEnvios(this.remitente.idDocumento, tipoConsulta).toPromise()
+    return this.envioService.consultarEnvios(this.remitente.idDocumento, tipoConsulta).toPromise()
       .then((envios) => {
         this.envios = envios;
         this.consultaEnvios = true;
@@ -51,8 +51,8 @@ export class ListarEnvioComponent implements OnInit {
     this.navegacion.navigateByUrl(`envio/editar/${id}`);
   }
 
-  accionEliminar(): void {
-    this.envioService.eliminarEnvio(this.idAccion).toPromise().then(() => {
+  accionEliminar(): Promise<void> {
+    return this.envioService.eliminarEnvio(this.idAccion).toPromise().then(() => {
       this.idAccion = null;
       this.cerrarAbrirModal();
       this.consultarEnvios(PENDIENTES);

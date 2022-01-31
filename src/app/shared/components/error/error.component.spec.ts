@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Error } from '@core/modelo/error';
 
 import { ErrorComponent } from './error.component';
 
@@ -20,6 +21,7 @@ describe('ErrorComponent', () => {
   });
 
   it('should create', () => {
+    component.error = new Error();
     expect(component).toBeTruthy();
   });
 });

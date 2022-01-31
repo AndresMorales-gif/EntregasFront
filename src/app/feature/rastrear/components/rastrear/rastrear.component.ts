@@ -30,8 +30,8 @@ export class RastrearComponent implements OnInit {
     this.construirFormularioConsultarGuia();
   }
 
-  consultarEnvio(): void {
-    this.envioService.consultarEnvioPorId(this.rastrearEnvioForm.value.idEnvio).toPromise()
+  consultarEnvio(): Promise<void> {
+    return this.envioService.consultarEnvioPorId(this.rastrearEnvioForm.value.idEnvio).toPromise()
       .then((envio) => {
         this.errorConsultaEnvio.isError = false;
         this.envio = envio;

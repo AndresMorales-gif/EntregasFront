@@ -22,4 +22,10 @@ describe('BotonAccionComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should create', () => {
+    spyOn(component.accion, 'emit');
+    component.onclick();
+    expect(component.accion.emit).toHaveBeenCalled();
+  });
 });

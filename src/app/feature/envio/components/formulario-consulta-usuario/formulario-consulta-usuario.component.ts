@@ -41,15 +41,15 @@ export class FormularioConsultaUsuarioComponent implements OnInit, OnChanges {
     }
   }
 
-  construirFormularioConsultarUsuario() {
+  construirFormularioConsultarUsuario(): void {
     this.consultarUsuarioForm = new FormGroup({
       idDocumento: new FormControl(this.idDocumento ? this.idDocumento : '',
         [Validators.required, Validators.minLength(LONGITUD_MINIMA_PERMITIDA_TEXTO)])
     });
   }
 
-  consultarUsuario() {
-    this.usuarioService.consultarPorDocumento(this.consultarUsuarioForm.value).toPromise()
+  consultarUsuario(): Promise<void> {
+    return this.usuarioService.consultarPorDocumento(this.consultarUsuarioForm.value).toPromise()
       .then((usuario) => {
         this.errorConsultaremitente.isError = false;
         this.consultaTerminada.emit(usuario);

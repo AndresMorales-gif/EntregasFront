@@ -14,7 +14,7 @@ export class UsuarioService {
     }
 
     public crearUsuario(usuario: Usuario) {
-        return this.http.doPost<Usuario, Respuesta>(`${environment.endpoint}/usuarios/`, usuario,
+        return this.http.doPost<Usuario, Respuesta>(`${environment.endpoint}/usuarios`, usuario,
             this.http.optsName('Crear usuario'));
     }
 

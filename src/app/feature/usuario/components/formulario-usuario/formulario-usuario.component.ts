@@ -39,8 +39,8 @@ export class FormularioUsuarioComponent implements OnInit {
     }
   }
 
-  consultarUsuario() {
-    this.usuarioService.consultarPorDocumento(new Usuario(null, '', this.idDocumento)).toPromise()
+  consultarUsuario(): Promise<void> {
+    return this.usuarioService.consultarPorDocumento(new Usuario(null, '', this.idDocumento)).toPromise()
       .then((usuario) => {
         this.usuario = usuario;
         this.construirFormularioCrearUsuario();
@@ -54,17 +54,22 @@ export class FormularioUsuarioComponent implements OnInit {
     });
   }
 
-  accionFormularioEnvio(): void {
+  accionFormularioEnvio(): Promise<void> {
     if (this.actualizar) {
-      this.respuestaAccion(this.usuarioService.actualizarUsuario({ ...this.formularioUsuarioForm.value, id: this.usuario.id }), ACTUALIZAR);
+      return this.respuestaAccion(this.usuarioService
+        .actualizarUsuario({ ...this.formularioUsuarioForm.value, id: this.usuario.id }),
+        ACTUALIZAR);
     } else {
-      this.respuestaAccion(this.usuarioService.crearUsuario(this.formularioUsuarioForm.value), CREAR);
+      return this.respuestaAccion(this.usuarioService
+        .crearUsuario(this.formularioUsuarioForm.value),
+        CREAR);
     }
   }
 
-  respuestaAccion(accion: Observable<Respuesta | void>, mensaje: string): void {
-    accion.toPromise()
-      .then(() => this.usuarioCreado = true)
+  respuestaAccion(accion: Observable<Respuesta | void>, mensaje: string): Promise<void> {
+    return accion.toPromise().then(() => {
+      this.usuarioCreado = true;
+    })
       .catch(e => {
         this.errorUsuarioFormulario.isError = true;
         this.errorUsuarioFormulario.titulo = ERROR_AL_ACCION_USUARIO.replace('$accion', mensaje);
