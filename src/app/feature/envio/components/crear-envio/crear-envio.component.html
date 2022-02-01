@@ -1,7 +1,7 @@
 <div [hidden]="esCompleto">
     <app-formulario-envio (completo)="creacionCompleta($event)"></app-formulario-envio>
 </div>
-<div [hidden]="!esCompleto || !envio" class="contenedor-envio-creado">
+<div *ngIf="esCompleto && envio" class="contenedor-envio-creado-exito">
     <p class="texto-negrita">Felicidades has creado un envio!!!</p>
     <p>Tu envio cuesta {{envio?.precio | currency}} y llegara el dia {{envio?.fechaEntrega | date: 'short'}}.
         Puedes encontrarlo con el número de guia {{envio?.id}}.

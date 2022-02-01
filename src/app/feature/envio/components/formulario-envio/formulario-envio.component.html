@@ -7,8 +7,9 @@
     </div>
 </div>
 <div [hidden]="remitente || (actualizar && !idRemitente)">
-    <app-formulario-consulta-usuario [noEditable]="actualizar" [idDocumento]="idRemitente" textoUsuario="remitente"
-        texto="Número de documento del remitente" (consultaTerminada)="consultarRemitenteTerminado($event)">
+    <app-formulario-consulta-usuario tituloBoton="Consultar remitente" propiedad="idDocumentoRemitente" [noEditable]="actualizar"
+        [idDocumento]="idRemitente" textoUsuario="remitente" texto="Número de documento del remitente"
+        (consultaTerminada)="consultarRemitenteTerminado($event)">
     </app-formulario-consulta-usuario>
 </div>
 <app-usuario-informacion [usuario]="remitente"></app-usuario-informacion>
@@ -18,8 +19,9 @@
     </div>
 </div>
 <div [hidden]="!remitente || destinatario">
-    <app-formulario-consulta-usuario [idDocumento]="idDestinatario" textoUsuario="destinatario"
-        texto="Número de documento del destinatario" (consultaTerminada)="consultarDestinatarioTerminado($event)">
+    <app-formulario-consulta-usuario tituloBoton="Consultar destinatario" propiedad="idDocumentoDestinatario" [idDocumento]="idDestinatario"
+        textoUsuario="destinatario" texto="Número de documento del destinatario"
+        (consultaTerminada)="consultarDestinatarioTerminado($event)">
     </app-formulario-consulta-usuario>
 </div>
 <app-usuario-informacion [usuario]="destinatario"></app-usuario-informacion>

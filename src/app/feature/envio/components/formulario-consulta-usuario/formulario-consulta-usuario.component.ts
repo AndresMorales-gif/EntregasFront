@@ -17,6 +17,10 @@ export class FormularioConsultaUsuarioComponent implements OnInit, OnChanges {
   consultarUsuarioForm: FormGroup;
   errorConsultaremitente: Error;
   @Input()
+  propiedad: string;
+  @Input()
+  tituloBoton = 'Consultar';
+  @Input()
   texto: string;
   @Input()
   textoUsuario = 'usuario';
@@ -37,19 +41,23 @@ export class FormularioConsultaUsuarioComponent implements OnInit, OnChanges {
 
   ngOnChanges(): void {
     if (this.consultarUsuarioForm && this.idDocumento) {
-      this.consultarUsuarioForm.controls.idDocumento.setValue(this.idDocumento);
+      this.consultarUsuarioForm.controls[this.propiedad].setValue(this.idDocumento);
     }
   }
 
   construirFormularioConsultarUsuario(): void {
     this.consultarUsuarioForm = new FormGroup({
-      idDocumento: new FormControl(this.idDocumento ? this.idDocumento : '',
+      [this.propiedad]: new FormControl(this.idDocumento ? this.idDocumento : '',
         [Validators.required, Validators.minLength(LONGITUD_MINIMA_PERMITIDA_TEXTO)])
     });
   }
 
   consultarUsuario(): Promise<void> {
-    return this.usuarioService.consultarPorDocumento(this.consultarUsuarioForm.value).toPromise()
+    return this.usuarioService.consultarPorDocumento
+      ({
+        idDocumento: this.consultarUsuarioForm.controls[this.propiedad].value as string,
+        id: null, nombre: null
+      }).toPromise()
       .then((usuario) => {
         this.errorConsultaremitente.isError = false;
         this.consultaTerminada.emit(usuario);

@@ -1,5 +1,5 @@
 <div [hidden]="remitente">
-    <app-formulario-consulta-usuario textoUsuario="remitente" texto="Número de documento"
+    <app-formulario-consulta-usuario propiedad="idDocumentoUsuario" textoUsuario="remitente" texto="Número de documento"
         (consultaTerminada)="consultarUsuarioTerminado($event)"></app-formulario-consulta-usuario>
 </div>
 <app-usuario-informacion [usuario]="remitente" [bienvenida]="true"></app-usuario-informacion>
@@ -12,7 +12,7 @@
     </app-boton-accion>
 </div>
 <div [hidden]="!consultaEnvios" class="contenedor-lista-envios-vacia">
-    <div [hidden]="envios.length > 0">
+    <div *ngIf="envios.length === 0">
         No tienes envios que mostrar!!
     </div>
 </div>
