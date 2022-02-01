@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Envio } from '@envio/shared/model/envio';
-import { EnvioService } from '@envio/shared/service/envio.service';
+import { Envio } from '@core/modelo/envio';
+import { EnvioConsultaService } from '@core/services/envio-consulta.service';
 
 @Component({
   selector: 'app-editar-envio',
@@ -13,7 +13,7 @@ export class EditarEnvioComponent implements OnInit {
   envio: Envio;
   idEnvio: number;
 
-  constructor(protected envioService: EnvioService, private activeRouter: ActivatedRoute) { }
+  constructor(protected envioConsultaService: EnvioConsultaService, private activeRouter: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.activeRouter.params.subscribe((params: Params) => {
@@ -22,7 +22,7 @@ export class EditarEnvioComponent implements OnInit {
   }
 
   creacionCompleta(id: number): Promise<void> {
-    return this.envioService.consultarEnvioPorId(id).toPromise().then(envio => {
+    return this.envioConsultaService.consultarEnvioPorId(id).toPromise().then(envio => {
       this.envio = envio;
       this.cambiarEsCompleto();
     });

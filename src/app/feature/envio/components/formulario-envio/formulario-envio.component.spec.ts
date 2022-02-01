@@ -3,23 +3,25 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Respuesta } from '@core/modelo/respuesta';
 import { Usuario } from '@core/modelo/usuario';
 import { HttpService } from '@core/services/http.service';
-import { Envio } from '@envio/shared/model/envio';
+import { Envio } from '@core/modelo/envio';
 import { Zona } from '@envio/shared/model/zona';
 import { EnvioService } from '@envio/shared/service/envio.service';
 import { of, throwError } from 'rxjs';
 
 import { FormularioEnvioComponent } from './formulario-envio.component';
+import { EnvioConsultaService } from '@core/services/envio-consulta.service';
 
 describe('FormularioEnvioComponent', () => {
   let component: FormularioEnvioComponent;
   let fixture: ComponentFixture<FormularioEnvioComponent>;
   let envioService: EnvioService;
+  let envioConsultaService: EnvioConsultaService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [FormularioEnvioComponent],
       imports: [HttpClientModule],
-      providers: [EnvioService, HttpService]
+      providers: [EnvioService, EnvioConsultaService, HttpService]
     })
       .compileComponents();
   });
@@ -28,6 +30,7 @@ describe('FormularioEnvioComponent', () => {
     fixture = TestBed.createComponent(FormularioEnvioComponent);
     component = fixture.componentInstance;
     envioService = TestBed.inject(EnvioService);
+    envioConsultaService = TestBed.inject(EnvioConsultaService);
     spyOn(envioService, 'consultarZonas').and.returnValue(of([new Zona(1, 'zonaTest', 3)]));
     fixture.detectChanges();
   });
@@ -42,7 +45,7 @@ describe('FormularioEnvioComponent', () => {
     component.remitente = new Usuario(1, 'testRemitente', '123456');
     component.destinatario = new Usuario(2, 'testDestinatario', '123457');
     spyOn(component.completo, 'emit');
-    spyOn(envioService, 'consultarEnvioPorId').and.returnValue(
+    spyOn(envioConsultaService, 'consultarEnvioPorId').and.returnValue(
       of(new Envio(1, '123456', '123457', 1, true, 15, new Date(), 195, new Date()))
     );
     spyOn(envioService, 'actualizarEnvio').and.returnValue(of());

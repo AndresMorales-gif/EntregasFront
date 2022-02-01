@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Error } from '@core/modelo/error';
-import { Envio } from '@envio/shared/model/envio';
+import { Envio } from '@core/modelo/envio';
 import { EnvioService } from '@envio/shared/service/envio.service';
 import { Usuario } from '@core/modelo/usuario';
 import { UsuarioService } from '@core/services/usuario.service';

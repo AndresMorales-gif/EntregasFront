@@ -5,7 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Usuario } from '@core/modelo/usuario';
 import { HttpService } from '@core/services/http.service';
 import { UsuarioService } from '@core/services/usuario.service';
-import { Envio } from '@envio/shared/model/envio';
+import { Envio } from '@core/modelo/envio';
 import { EnvioService } from '@envio/shared/service/envio.service';
 import { of } from 'rxjs';
 

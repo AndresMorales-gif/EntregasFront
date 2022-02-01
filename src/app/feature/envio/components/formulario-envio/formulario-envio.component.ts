@@ -2,11 +2,12 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Error } from '@core/modelo/error';
 import { Zona } from '@envio/shared/model/zona';
-import { Envio } from '@envio/shared/model/envio';
+import { Envio } from '@core/modelo/envio';
 import { EnvioService } from '@envio/shared/service/envio.service';
 import { Observable } from 'rxjs';
 import { Usuario } from '@core/modelo/usuario';
 import { Respuesta } from '@core/modelo/respuesta';
+import { EnvioConsultaService } from '@core/services/envio-consulta.service';
 
 const ERROR_ACCION = 'Error al ejecutar la accion';
 const ERROR_AL_CREAR = 'Error al crear el envio';
@@ -34,7 +35,7 @@ export class FormularioEnvioComponent implements OnInit {
   @Output()
   completo: EventEmitter<number> = new EventEmitter();
 
-  constructor(protected envioService: EnvioService) {
+  constructor(protected envioService: EnvioService, private envioConsultaService: EnvioConsultaService) {
     this.errorFormularioEnvio = new Error();
   }
 
@@ -44,7 +45,7 @@ export class FormularioEnvioComponent implements OnInit {
   }
 
   consultarEnvio(): Promise<void> {
-    return this.envioService.consultarEnvioPorId(this.idEnvio).toPromise().then((envio) => {
+    return this.envioConsultaService.consultarEnvioPorId(this.idEnvio).toPromise().then((envio) => {
       this.envio = envio;
       this.idRemitente = envio.remitente;
       this.idDestinatario = envio.destinatario;

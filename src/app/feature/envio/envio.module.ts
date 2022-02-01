@@ -9,6 +9,7 @@ import { UsuarioService } from '@core/services/usuario.service';
 import { FormularioEnvioComponent } from './components/formulario-envio/formulario-envio.component';
 import { FormularioConsultaUsuarioComponent } from './components/formulario-consulta-usuario/formulario-consulta-usuario.component';
 import { EditarEnvioComponent } from './components/editar-envio/editar-envio.component';
+import { EnvioConsultaService } from '@core/services/envio-consulta.service';
 
 @NgModule({
     declarations: [
@@ -23,6 +24,6 @@ import { EditarEnvioComponent } from './components/editar-envio/editar-envio.com
         EnvioRoutingModule,
         SharedModule
     ],
-    providers: [EnvioService, UsuarioService]
+    providers: [EnvioService, UsuarioService, EnvioConsultaService]
 })
 export class EnvioModule { }

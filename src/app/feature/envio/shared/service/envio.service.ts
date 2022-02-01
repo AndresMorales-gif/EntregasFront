@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Respuesta } from '@core/modelo/respuesta';
 import { HttpService } from '@core/services/http.service';
 import { environment } from 'src/environments/environment';
-import { Envio } from '../model/envio';
+import { Envio } from '@core/modelo/envio';
 import { Zona } from '../model/zona';
 
 @Injectable()
@@ -18,11 +18,6 @@ export class EnvioService {
   public consultarEnvios(idDocumento: string, tipoConsulta: string) {
     return this.http.doGetParameters<Envio[]>(`${environment.endpoint}/envios/usuario/${idDocumento}`,
       new HttpParams().set('consulta', tipoConsulta),
-      this.http.optsName('consultar envios'));
-  }
-
-  public consultarEnvioPorId(id: number) {
-    return this.http.doGet<Envio>(`${environment.endpoint}/envios/${id}`,
       this.http.optsName('consultar envios'));
   }
 

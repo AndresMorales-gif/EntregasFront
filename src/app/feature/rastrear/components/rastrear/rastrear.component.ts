@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Error } from '@core/modelo/error';
-import { Envio } from '@envio/shared/model/envio';
-import { EnvioService } from '@envio/shared/service/envio.service';
+import { Envio } from '@core/modelo/envio';
 import { Usuario } from '@core/modelo/usuario';
 import { UsuarioService } from '@core/services/usuario.service';
+import { EnvioConsultaService } from '@core/services/envio-consulta.service';
 
 const ERROR_CONSULTA = 'Error al realizar la consulta';
 const ERROR_ENVIO = 'Error al consultar el envio';
@@ -22,7 +22,7 @@ export class RastrearComponent implements OnInit {
   destinatario: Usuario;
   consultaCompleta = false;
 
-  constructor(protected envioService: EnvioService, protected usuarioService: UsuarioService) {
+  constructor(protected envioConsultaService: EnvioConsultaService, protected usuarioService: UsuarioService) {
     this.errorConsultaEnvio = new Error();
   }
 
@@ -31,7 +31,7 @@ export class RastrearComponent implements OnInit {
   }
 
   consultarEnvio(): Promise<void> {
-    return this.envioService.consultarEnvioPorId(this.rastrearEnvioForm.value.idEnvio).toPromise()
+    return this.envioConsultaService.consultarEnvioPorId(this.rastrearEnvioForm.value.idEnvio).toPromise()
       .then((envio) => {
         this.errorConsultaEnvio.isError = false;
         this.envio = envio;

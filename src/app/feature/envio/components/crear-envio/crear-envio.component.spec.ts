@@ -2,22 +2,22 @@ import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { HttpService } from '@core/services/http.service';
 import { EnvioRoutingModule } from '@envio/envio-routing.module';
-import { Envio } from '@envio/shared/model/envio';
-import { EnvioService } from '@envio/shared/service/envio.service';
+import { Envio } from '@core/modelo/envio';
 import { of } from 'rxjs';
 
 import { CrearEnvioComponent } from './crear-envio.component';
+import { EnvioConsultaService } from '@core/services/envio-consulta.service';
 
 describe('CrearEnvioComponent', () => {
   let component: CrearEnvioComponent;
   let fixture: ComponentFixture<CrearEnvioComponent>;
-  let envioService: EnvioService;
+  let envioConsultaService: EnvioConsultaService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [CrearEnvioComponent],
       imports: [HttpClientModule, EnvioRoutingModule],
-      providers: [EnvioService, HttpService]
+      providers: [EnvioConsultaService, HttpService]
     })
       .compileComponents();
   });
@@ -25,8 +25,8 @@ describe('CrearEnvioComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CrearEnvioComponent);
     component = fixture.componentInstance;
-    envioService = TestBed.inject(EnvioService);
-    spyOn(envioService, 'consultarEnvioPorId').and.returnValue(
+    envioConsultaService = TestBed.inject(EnvioConsultaService);
+    spyOn(envioConsultaService, 'consultarEnvioPorId').and.returnValue(
       of(new Envio(1, '123456', '123457', 1, true, 15, new Date(), 195, new Date()))
     );
     fixture.detectChanges();

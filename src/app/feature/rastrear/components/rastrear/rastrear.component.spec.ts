@@ -3,23 +3,23 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Usuario } from '@core/modelo/usuario';
 import { HttpService } from '@core/services/http.service';
 import { UsuarioService } from '@core/services/usuario.service';
-import { Envio } from '@envio/shared/model/envio';
-import { EnvioService } from '@envio/shared/service/envio.service';
+import { Envio } from '@core/modelo/envio';
 import { of, throwError } from 'rxjs';
 
 import { RastrearComponent } from './rastrear.component';
+import { EnvioConsultaService } from '@core/services/envio-consulta.service';
 
 describe('RastrearComponent', () => {
   let component: RastrearComponent;
   let fixture: ComponentFixture<RastrearComponent>;
-  let envioService: EnvioService;
+  let envioConsultarService: EnvioConsultaService;
   let usuarioService: UsuarioService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [HttpClientModule],
       declarations: [RastrearComponent],
-      providers: [EnvioService, UsuarioService, HttpService]
+      providers: [EnvioConsultaService, UsuarioService, HttpService]
     })
       .compileComponents();
   });
@@ -27,9 +27,9 @@ describe('RastrearComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(RastrearComponent);
     component = fixture.componentInstance;
-    envioService = TestBed.inject(EnvioService);
+    envioConsultarService = TestBed.inject(EnvioConsultaService);
     usuarioService = TestBed.inject(UsuarioService);
-    spyOn(envioService, 'consultarEnvioPorId').and.callFake((id: number) => {
+    spyOn(envioConsultarService, 'consultarEnvioPorId').and.callFake((id: number) => {
       if (id === 1) {
         return of(new Envio(1, '123456', '123457', 1, true, 15, new Date(), 195, new Date()));
       }
